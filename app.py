@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, validators
 from pymongo import MongoClient
+from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key'  # Change this to a secure secret key
@@ -31,7 +32,7 @@ def register():
      form = RegistrationForm()
 
      if form.validate_on_submit():
-        password_hash = bcrypt.generate_password_hash(form.password.data).decode('utf-8')  # Hash the password
+        password_hash = Bcrypt.generate_password_hash(form.password.data).decode('utf-8')  # Hash the password
         user_data = {
             'fullname': form.fullname.data,
             'email': form.email.data,
