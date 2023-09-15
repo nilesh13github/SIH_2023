@@ -54,10 +54,30 @@ def login():
         if user and bcrypt.check_password_hash(user['password'], password):
             flash('Login successful.', 'success')
             return render_template('login.html', user=user)
+        
         else:
             flash('Login failed. Please check your credentials.', 'danger')
 
     return render_template('login.html')
+
+@app.route('/dashboard', methods=['POST'])
+def dashboard():
+    if request.method=='POST':
+        email = request.form['email']
+        password = request.form['password']
+        user = mongo.db.users.find_one({'email': email})
+        if user and bcrypt.check_password_hash(user['password'], password):
+
+            user = mongo.db.users.find_one({'email': email})
+            print(user)
+
+            return render_template('user_dashboard.html', user_data=user)
+        else:
+            return("something went wrong--nilesh")
+
+
+    return()
+
 
 if __name__ == '__main__':
     app.run(debug=True)
