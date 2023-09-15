@@ -6,38 +6,37 @@
 </head>
 <body>
     <h1>Registration</h1>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li style="color: {% if 'danger' in message %} red {% else %}green{% endif %};">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
     <form method="POST">
-        {{ form.hidden_tag() }}
         <div>
-            {{ form.fullname.label }} {{ form.fullname }}
+            Full Name: <input type="text" name="fullname">
         </div>
         <div>
-            {{ form.email.label }} {{ form.email }}
+            Email: <input type="email" name="email">
         </div>
         <div>
-            {{ form.phone.label }} {{ form.phone }}
+            Phone Number: <input type="text" name="phone">
         </div>
         <div>
-            {{ form.aadhar_number.label }} {{ form.aadhar_number }}
+            Aadhar Number: <input type="text" name="aadhar_number">
         </div>
         <div>
-            {{ form.password.label }} {{ form.password }}
+            Password: <input type="password" name="password">
         </div>
         <div>
-            {{ form.confirm_password.label }} {{ form.confirm_password }}
+            Re-enter Password: <input type="password" name="confirm_password">
         </div>
         <div>
-            {{ form.submit }}
+            <input type="submit" value="Register">
         </div>
     </form>
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-        <ul>
-            {% for message in messages %}
-                <li style="color: red;">{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-{% endwith %}
 </body>
 </html>
