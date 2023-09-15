@@ -10,7 +10,7 @@
         {% if messages %}
             <ul>
                 {% for message in messages %}
-                    <li style="color: {% if 'danger' in message %} red {% else %}green{% endif %};">{{ message }}</li>
+                    <li style="color: {% if 'danger' in message %}red{% else %}green{% endif %};">{{ message }}</li>
                 {% endfor %}
             </ul>
         {% endif %}
