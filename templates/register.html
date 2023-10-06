@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+    <link rel="stylesheet" href="register.css">
+</head>
+<body class="element">
+    <p class="tag">Registration</p>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li style="color: {% if 'danger' in message %}red{% else %}green{% endif %};">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <div >
+    <form method="POST" class="" >
+        <div>
+             <input type="text" placeholder="Full Name" name="fullname">
+        </div>
+        <div>
+             <input type="email" placeholder="Email" name="email">
+        </div>
+        <div>
+            <input type="text" placeholder=" Phone Number" name="phone">
+        </div>
+        <div>
+<<<<<<< Updated upstream
+             <input type="text" placeholder="Aadhar Number" name="aadhar_number">
+=======
+            Aadhaar Number: <input type="text" name="aadhar_number">
+>>>>>>> Stashed changes
+        </div>
+        <div>
+             <input type="password" placeholder="Password" name="password">
+        </div>
+        <div>
+             <input type="password" placeholder="Re-enter Password" name="confirm_password">
+        </div>
+        <div>
+            <input type="submit" value="Register">
+        </div>
+    </form>
+    </div>
+</body>
+</html>
