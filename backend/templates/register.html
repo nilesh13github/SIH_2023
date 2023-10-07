@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="register.css">
 </head>
 <body class="element">
-    <p class="tag">Registration</p>
+    <h1>E-DVOCATE</h1>
     {% with messages = get_flashed_messages() %}
         {% if messages %}
             <ul>
@@ -17,28 +17,24 @@
         {% endif %}
     {% endwith %}
     <div >
-    <form method="POST" class="" >
+    <form method="POST" class="elemen" >
         <div>
-             <input type="text" placeholder="Full Name" name="fullname">
+            Full Name: <input type="text" name="fullname">
         </div>
         <div>
-             <input type="email" placeholder="Email" name="email">
+            Email: <input type="email" name="email">
         </div>
         <div>
-            <input type="text" placeholder=" Phone Number" name="phone">
+            Phone Number: <input type="text" name="phone">
         </div>
         <div>
-<<<<<<< Updated upstream
-             <input type="text" placeholder="Aadhar Number" name="aadhar_number">
-=======
-            Aadhaar Number: <input type="text" name="aadhar_number">
->>>>>>> Stashed changes
+            Aadhar Number: <input type="text" name="aadhar_number">
         </div>
         <div>
-             <input type="password" placeholder="Password" name="password">
+            Password: <input type="password" name="password">
         </div>
         <div>
-             <input type="password" placeholder="Re-enter Password" name="confirm_password">
+            Re-enter Password: <input type="password" name="confirm_password">
         </div>
         <div>
             <input type="submit" value="Register">
