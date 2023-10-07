@@ -1,5 +1,5 @@
-##do not touch
-
+"""##do not touch
+#        <!-- <img src="{{ image.png}}" alt="User Profile Picture" class="profile-picture"> -->
 
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_wtf import FlaskForm
@@ -28,4 +28,8 @@ result = users.insert_one(user_data)
 if result.acknowledged:
     print("Registration successful. User ID:", result.inserted_id)
 else:
-    print("Registration failed. Database error.")
+    print("Registration failed. Database error.")"""
+
+email="pandeynilesh325a@gmail.com"
+ls=email.split('@')[0]
+print(ls)

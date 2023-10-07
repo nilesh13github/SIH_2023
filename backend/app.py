@@ -1,10 +1,12 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_bcrypt import Bcrypt
 from email_validator import validate_email, EmailNotValidError
 from flask_pymongo import PyMongo
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'aditya'
+app.config['SESSION_TYPE'] = 'filesystem'
+app.config["SESSION_PERMANENT"] = False
 app.config['MONGO_URI'] = 'mongodb://localhost:27017/edvocate'
 bcrypt = Bcrypt(app)
 mongo = PyMongo(app)
@@ -53,6 +55,8 @@ def login():
 
         if user and bcrypt.check_password_hash(user['password'], password):
             flash('Login successful.', 'success')
+            session['logged_in']=True
+            session['email']=email
             return render_template('login.html', user=user)
         
         else:
@@ -60,23 +64,29 @@ def login():
 
     return render_template('login.html')
 
-@app.route('/dashboard', methods=['POST'])
+@app.route('/dashboard', methods=['GET','POST'])
 def dashboard():
-    if request.method=='POST':
-        email = request.form['email']
-        password = request.form['password']
-        user = mongo.db.users.find_one({'email': email})
-        if user and bcrypt.check_password_hash(user['password'], password):
+    email = session.get('email')
+    user = mongo.db.users.find_one({'email': email})
+    if user:
+        if request.method == 'POST':
+            
+            return render_template('user_dashboard.html', user_data=user, edit_link=url_for('edit_profile', id=email))
+    else:
+        return "User not found."
 
-            user = mongo.db.users.find_one({'email': email})
-            print(user)
 
-            return render_template('user_dashboard.html', user_data=user)
+
+@app.route('/edit/<id>', methods=['GET','POST'])
+def edit_profile(id):
+    if session.get('logged_in'):
+        user = mongo.db.users.find_one({'email': id})
+        if user:
+            return render_template('user_profile_edit.html', user_data=user)
         else:
-            return("something went wrong--nilesh")
-
-
-    return()
+            return "User not found."
+    else:
+        return "Please log in to edit your profile."
 
 
 if __name__ == '__main__':

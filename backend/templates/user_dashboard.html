@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <div class="profile-container">
+
+        <div class="profile-info">
+            <p>Name:</p>
+            <p > {{ user_data['fullname'] }}</p>
+
+            <p>Mobile Number:</p>
+            <p> {{ user_data['phone'] }}</p>
+
+            <p>Aadhar Number:</p> 
+            <p>{{ user_data['aadhar_number'] }}</p>
+
+            <p>Email:</p>
+            <p name="email"> {{ user_data['email'] }}</p>
+
+        </div>
+        <p><a href="{{edit_link}}">edit Profile</a></p>
+        
+        </form>
+    </div>
+</html>
